@@ -145,6 +145,14 @@
                 </div>
 
                 <div class="hide-details form-group row">
+                    @Html.LabelFor(m => m.AssertionModel.Email, new { @class = "col-form-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.AssertionModel.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.AssertionModel.Email)
+                    </div>
+                </div>
+
+                <div class="hide-details form-group row">
                     @Html.LabelFor(m => m.AssertionModel.SessionIndex, new { @class = "col-form-label col-md-4" })
                     <div class="col-md-8">
                         @Html.TextBoxFor(m => m.AssertionModel.SessionIndex, new { @class = "form-control" })

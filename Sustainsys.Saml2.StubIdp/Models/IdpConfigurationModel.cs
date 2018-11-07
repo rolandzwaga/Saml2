@@ -38,7 +38,7 @@ namespace Sustainsys.Saml2.StubIdp.Models
         private static string ComputeEtag(string jsonData)
         {
             var md5Hash = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(jsonData));
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             for (int i = 0; i < md5Hash.Length; i++)
             {
                 sb.Append(md5Hash[i].ToString("X2"));

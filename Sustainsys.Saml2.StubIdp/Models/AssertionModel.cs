@@ -26,6 +26,10 @@ namespace Sustainsys.Saml2.StubIdp.Models
         [Required]
         public string NameId { get; set; }
 
+        [Display(Name = "Subject Email")]
+        [Required]
+        public string Email { get; set; }
+
         [Display(Name = "Audience")]
         public string Audience { get; set; }
 
@@ -43,6 +47,7 @@ namespace Sustainsys.Saml2.StubIdp.Models
             {
                 AssertionConsumerServiceUrl = ConfigurationManager.AppSettings["defaultAcsUrl"],
                 NameId = ConfigurationManager.AppSettings["defaultNameId"],
+                Email = ConfigurationManager.AppSettings["defaultEmail"],
                 SessionIndex = DefaultSessionIndex
             };
         }
@@ -63,8 +68,11 @@ namespace Sustainsys.Saml2.StubIdp.Models
             var nameIdClaim = new Claim(ClaimTypes.NameIdentifier, NameId);
             nameIdClaim.Properties[ClaimProperties.SamlNameIdentifierFormat] = 
                 NameIdFormat.Unspecified.GetUri().AbsoluteUri;
+
+            var emailClaim = new Claim(ClaimTypes.Email, Email);
+
             var claims =
-                new Claim[] { nameIdClaim }
+                new Claim[] { nameIdClaim, emailClaim }
                 .Concat(YieldIfNotNullOrEmpty(SessionIndex).Select(
                     s => new Claim(Saml2ClaimTypes.SessionIndex, SessionIndex)))
                 .Concat((AttributeStatements ?? Enumerable.Empty<AttributeStatementModel>())

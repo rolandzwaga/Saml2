@@ -53,6 +53,7 @@ namespace Sustainsys.Saml2.StubIdp.Controllers
 
                     model.CustomDescription = fileData.IdpDescription;
                     model.AssertionModel.NameId = null;
+                    model.AssertionModel.Email = null;
                     model.HideDetails = fileData.HideDetails;
                 }
             }
