@@ -46,7 +46,7 @@ namespace SampleIdentityServer4
 							LoadMetadata = true
 						});
 
-					options.SPOptions.ServiceCertificates.Add(new X509Certificate2("Sustainsys.Saml2.Tests.pfx"));
+					options.SPOptions.ServiceCertificates.Add(new X509Certificate2("Sustainsys.Saml2.Tests.pfx", "", X509KeyStorageFlags.MachineKeySet));
 				})
 				.AddOpenIdConnect("demoidsrv", "IdentityServer", options =>
 				{
